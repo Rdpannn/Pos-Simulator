@@ -1,0 +1,15 @@
+# file place & lock roblox studio
+*.rbxl
+*.rbxlx
+*.rbxl.lock
+*.rbxlx.lock
+
+# hasil generate rojo
+sourcemap.json
+
+# dokumen internal, jangan ikut ke repo
+CLAUDE.md
+docs/
+codeInstruction.txt
+\[INSTRUKSI PERSONA\].txt
+.claude/
