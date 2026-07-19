@@ -9,6 +9,15 @@ local maxOrder = 3
 local jedaSpawn = 5
 local peluang = 0.5
 
+-- jalur siaran daftar order ke semua client
+local orderUpdate = Instance.new("RemoteEvent")
+orderUpdate.Name = "orderUpdate"
+orderUpdate.Parent = game.ReplicatedStorage
+
+local function siarkan()
+	orderUpdate:FireAllClients(order.daftar)
+end
+
 function order.buat()
 	local b = barang[math.random(#barang)]
 	local semuaRumah = workspace.map.pemukiman:GetChildren()
@@ -16,9 +25,10 @@ function order.buat()
 
 	table.insert(order.daftar, {
 		barang = b,
-		alamat = rumah.Name,
+		rumah = rumah,
+		alamat = rumah:GetAttribute("alamat") or rumah.Name,
 	})
-	print("Order masuk: " .. b.nama .. " ke " .. rumah.Name .. " (aktif: " .. #order.daftar .. ")")
+	siarkan()
 end
 
 function order.mulai()
